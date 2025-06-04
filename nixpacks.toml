@@ -27,4 +27,4 @@ nixPkgs = [
 
 # Define the start command for your application
 [start]
-cmd = "gunicorn main:app -b 0.0.0.0:8000"
+cmd = "gunicorn main:app"
