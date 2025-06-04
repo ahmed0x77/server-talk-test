@@ -1,5 +1,17 @@
 FROM python:3.12-slim
 
+# 2. Add contrib and non-free components via a new, explicitly signed sources list file.
+# This assumes the standard Debian archive keyring is available at /usr/share/keyrings/debian-archive-keyring.gpg.
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+        rar \
+        unrar \
+        wget \
+        curl && \
+    rm -rf /var/lib/apt/lists/* && \
+    apt-get clean
+
+
 
 
 
