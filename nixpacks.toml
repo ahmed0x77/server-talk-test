@@ -1,7 +1,3 @@
-# nixpacks.toml (Corrected version)
-
-providers = ["python"]
-
 [phases.setup]
 # List Nix packages needed.
 # pkgs.rar provides both 'rar' and 'unrar' commands.
@@ -11,6 +7,3 @@ nixPkgs = [
     "pkgs.wget",
     "pkgs.curl"
 ]
-
-[start]
-cmd = "gunicorn main:app"
