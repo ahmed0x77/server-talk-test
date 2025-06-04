@@ -1,3 +1,30 @@
 # requirements.txt
 Flask==2.3.3
 gunicorn==21.2.0
+
+
+
+
+
+cryptography==45.0.3
+
+mysql-connector-python==9.3.0
+SQLAlchemy==2.0.41
+Flask-SQLAlchemy==3.1.1
+Flask-Caching==2.3.1
+PyMySQL==1.1.1
+Requests==2.32.3
+google-genai==1.18.0
+
+colorama==0.4.6
+
+
+# Must Use boto3==1.35.99 to avoid error:  SOURCE: https://www.backblaze.com/docs/cloud-storage-use-the-aws-sdk-for-python-with-backblaze-b2
+boto3==1.35.99
+dotenv==0.9.9
+Flask-APScheduler==1.13.1
+fake_useragent==2.2.0
+opencv-python-headless==4.11.0.86
+
+BeautifulSoup==3.2.2
+colorama==0.4.6
