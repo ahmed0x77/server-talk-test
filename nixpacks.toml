@@ -7,3 +7,7 @@ nixPkgs = [
     "pkgs.wget",
     "pkgs.curl"
 ]
+
+
+[start]
+cmd = "gunicorn main:app"
