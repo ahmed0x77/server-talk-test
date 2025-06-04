@@ -1,30 +1,16 @@
-# nixpacks.toml
+# nixpacks.toml (Corrected version)
 
-# Specify providers, Python is usually auto-detected but being explicit is good.
 providers = ["python"]
 
-# Define phases for the build
 [phases.setup]
 # List Nix packages needed.
-# The exact names might vary slightly; you can search for them on search.nixos.org/packages
+# pkgs.rar provides both 'rar' and 'unrar' commands.
 nixPkgs = [
     "pkgs.python312",  # Or let Nixpacks determine Python from your project
-    "pkgs.rar",
-    "pkgs.unrar",
+    "pkgs.rar",        # This is all you need for rar and unrar
     "pkgs.wget",
     "pkgs.curl"
 ]
 
-# Nixpacks will typically detect and install from requirements.txt automatically
-# if 'providers = ["python"]' is set and requirements.txt exists.
-# If you needed to run custom pip install commands, you could add an [phases.install] section.
-# [phases.install]
-# cmds = [
-#   "pip install --upgrade pip",
-#   "pip install --no-cache-dir -r requirements.txt"
-# ]
-
-
-# Define the start command for your application
 [start]
 cmd = "gunicorn main:app"
