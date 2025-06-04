@@ -26,5 +26,4 @@ Flask-APScheduler==1.13.1
 fake_useragent==2.2.0
 opencv-python-headless==4.11.0.86
 
-BeautifulSoup==3.2.2
 colorama==0.4.6
