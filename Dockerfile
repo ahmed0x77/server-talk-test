@@ -19,4 +19,4 @@ ENV PATH="/app/venv/bin:$PATH"
 EXPOSE 8000
 
 # Run the app with Gunicorn
-CMD ["gunicorn", "main:app", "--bind", "0.0.0.0:8000"]
+CMD ["gunicorn", "main:app"]
