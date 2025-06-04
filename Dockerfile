@@ -1,47 +1,22 @@
-# ─────────────────────────────────────────────────────────────
-# 1) Base image: Ubuntu 24.04 LTS (glibc ≥ 2.40)
-# ─────────────────────────────────────────────────────────────
-FROM ubuntu:24.04
+FROM python:3.12-slim
 
-# Avoid interactive prompts during apt install
-ENV DEBIAN_FRONTEND=noninteractive
-
-# ─────────────────────────────────────────────────────────────
-# 2) Install system dependencies:
-#    • python3 / pip
-#    • rar & unrar (if you still need binary compression)
-# ─────────────────────────────────────────────────────────────
-RUN apt-get update \
- && apt-get install -y \
-      python3 \
-      python3-pip \
-      rar       \
-      unrar-free \
- && rm -rf /var/lib/apt/lists/*
-
-# ─────────────────────────────────────────────────────────────
-# 3) Create application directory
-# ─────────────────────────────────────────────────────────────
+# Set working directory
 WORKDIR /app
 
-# ─────────────────────────────────────────────────────────────
-# 4) Copy your code (including rar/ if you still bundle it)
-# ─────────────────────────────────────────────────────────────
+# Copy project files
 COPY . /app
 
-# ─────────────────────────────────────────────────────────────
-# 5) Install Python requirements (including gunicorn)
-# ─────────────────────────────────────────────────────────────
-RUN pip3 install --no-cache-dir -r requirements.txt
+# Create a virtual environment
+RUN python3 -m venv venv
 
-# ─────────────────────────────────────────────────────────────
-# 6) Expose port (optional; for documentation)
-# ─────────────────────────────────────────────────────────────
-#   (adjust if you bind to a different port)
+# Activate virtual environment and install dependencies
+RUN . venv/bin/activate && pip install --upgrade pip && pip install --no-cache-dir -r requirements.txt
+
+# Use the virtual environment for PATH
+ENV PATH="/app/venv/bin:$PATH"
+
+# Expose the port your app runs on (change if needed)
 EXPOSE 8000
 
-# ─────────────────────────────────────────────────────────────
-# 7) Default command: use Gunicorn to run `main:app`
-#    (bind to 0.0.0.0:8000 by default)
-# ─────────────────────────────────────────────────────────────
-CMD ["gunicorn", "main:app"]
+# Run the app with Gunicorn
+CMD ["gunicorn", "main:app", "--bind", "0.0.0.0:8000"]
