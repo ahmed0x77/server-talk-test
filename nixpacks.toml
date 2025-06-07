@@ -1,13 +1,11 @@
 [phases.setup]
-# List Nix packages needed.
-# pkgs.rar provides both 'rar' and 'unrar' commands.
 nixPkgs = [
     "pkgs.python312",  # Or let Nixpacks determine Python from your project
-    "pkgs.rar",        # This is all you need for rar and unrar
-    "pkgs.wget",
-    "pkgs.curl"
+    "pkgs.rar",        # THIS PROVIDES BOTH 'rar' AND 'unrar'
+    "pkgs.p7zip",      # THIS PROVIDES '7z' FOR 7-ZIP SUPPORT
+    "pkgs.wget",       # Download files from web servers
+    "pkgs.curl"        #  Transfer data --to/from-- servers
 ]
-
 
 [start]
 cmd = "gunicorn main:app"
